@@ -187,6 +187,15 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide align="flex-start" bgColor="primary" fill>
           <Heading size={6} caps lineHeight={1} textColor="secondary">
+            When will ReasonML be ready?
+          </Heading>
+          <div style={{margin: "50px 0 0"}}>
+            <Image src={require("./images/reason_stability.png")}/>
+            source: https://jaredforsyth.com/2017/06/23/when-will-reasonml-be-ready/
+          </div>
+        </Slide>
+        <Slide align="flex-start" bgColor="primary" fill>
+          <Heading size={6} caps lineHeight={1} textColor="secondary">
             let
           </Heading>
           <List>
@@ -227,6 +236,11 @@ export default class Presentation extends React.Component {
           <Heading size={6} caps lineHeight={1} textColor="secondary">
             Compare ReasonReact and ReactJS
           </Heading>
+          <Text margin="50px 0 0">
+            <Link href="https://reasonml.github.io/reason-react/" target="blank">
+              Official Website
+            </Link>
+          </Text>
         </Slide>
       </Deck>
     );
