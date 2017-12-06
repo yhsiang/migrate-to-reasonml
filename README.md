@@ -77,3 +77,5 @@ https://medium.com/@chenglou/cool-things-reason-formatter-does-9e1f79e25a82
 6/14
 https://medium.com/@chenglou/mareo-reason-bucklescript-mario-205ce4c1cbe5
 6/20
+
+https://jaredforsyth.com/2017/11/12/advanced-reasonreact-hider-order-components/

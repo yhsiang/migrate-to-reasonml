@@ -3,18 +3,16 @@ import React from 'react';
 
 // Import Spectacle Core tags
 import {
-  BlockQuote,
-  Cite,
   Deck,
   Heading,
   ListItem,
   List,
-  Quote,
   Slide,
   Text,
   CodePane,
   Code,
   Link,
+  Image,
 } from 'spectacle';
 
 // Import theme
@@ -35,6 +33,34 @@ const theme = createTheme(
     secondary: 'Helvetica',
   }
 );
+
+const codeLet = `  {
+    let a: int = 1;
+    let b: int = 2;
+    a+b;
+  }
+  /* not accessible a,b here */
+`;
+
+const codeImmutable = `  let a = 1;
+  let a = 1;
+`;
+
+const codeNoNested = `  type post = {
+    title: string
+  };
+  /* You can't do this */
+  type posts = {
+    list({
+      title: string
+    })
+  };
+`;
+
+const codeVariant = `  type hands =
+    | Left
+    | Right;
+`;
 
 export default class Presentation extends React.Component {
   render() {
@@ -100,28 +126,82 @@ export default class Presentation extends React.Component {
             Add Reason to your existing project
           </Heading>
           <List>
-            <ListItem>CRA - Appier version (7.0.0)</ListItem>
-            <ListItem>Webpack 2</ListItem>
-            <ListItem>Webpack 1</ListItem>
+            <ListItem>CRA - Appier version (7.0.2)</ListItem>
+            <ListItem>
+              Webpack 2
+              <div style={{margin: "5px 0 0"}}>
+                <div style={{margin: "0 0 10px"}}><Code>$ yarn add bs-loader reason-react</Code></div>
+                <CodePane lang="javascript" source={`{
+  test: /\\.(re|ml)$/, use: 'bs-loader'
+}
+/* bsconfig.json */
+{
+  "name": "react-scripts-appier",
+  "sources": [
+    "src"
+  ],
+  "bs-dependencies": [
+    "reason-react"
+  ],
+  "reason": {
+    "react-jsx": 2
+  },
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "refmt": 3
+}`} textSize={14}/>
+              </div>
+            </ListItem>
           </List>
+        </Slide>
+        <Slide>
+          <Text>Webpack 1</Text>
+          <div style={{margin: "0 0 10px"}}><Code>$ yarn add bs-loader reason-react</Code></div>
+          <div style={{margin: "15px 0 20px"}}>
+            <CodePane lang="javascript" source={`{
+  ...
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  ...
+}`} textSize={16}/>
+          </div>
+          <div style={{margin: "0 0 10px"}}><Code>$ bsb -make-world -w</Code></div>
         </Slide>
         <Slide align="flex-start" bgColor="primary" fill>
           <Heading size={6} caps lineHeight={1} textColor="secondary">
             Reason for beginner
           </Heading>
-          <Text>
+          <Text margin="50px 0 0">
             <Link href="https://reasonml.github.io/" target="blank">
               Official Website
             </Link>
           </Text>
+          <div style={{margin: "50px 0 0"}}>
+            <Image src={require("./images/architecture.jpg")}/>
+            source: http://2ality.com/2017/11/about-reasonml.html
+          </div>
         </Slide>
         <Slide align="flex-start" bgColor="primary" fill>
           <Heading size={6} caps lineHeight={1} textColor="secondary">
             let
           </Heading>
           <List>
-            <ListItem>Block scrope</ListItem>
-            <ListItem>Immutable</ListItem>
+            <ListItem>
+              Block scrope
+              <div style={{margin: "30px 0 30px"}}>
+                <CodePane lang="reason" source={codeLet} textSize={24}/>
+              </div>
+            </ListItem>
+            <ListItem>
+              Immutable
+              <div style={{margin: "30px 0 30px"}}>
+                <CodePane margin="20x 0 0" lang="reason" source={codeImmutable} textSize={24}/>
+              </div>
+            </ListItem>
           </List>
         </Slide>
         <Slide align="flex-start" bgColor="primary" fill>
@@ -129,8 +209,18 @@ export default class Presentation extends React.Component {
             Type
           </Heading>
           <List>
-            <ListItem>Block scrope</ListItem>
-            <ListItem>Immutable</ListItem>
+            <ListItem>
+              No Nested
+              <div style={{margin: "30px 0 30px"}}>
+                <CodePane margin="20x 0 0" lang="reason" source={codeNoNested} textSize={22}/>
+              </div>
+            </ListItem>
+            <ListItem>
+              Variant (ENUM, Sum type)
+              <div style={{margin: "30px 0 30px"}}>
+                <CodePane margin="20x 0 0" lang="reason" source={codeVariant} textSize={24}/>
+              </div>
+            </ListItem>
           </List>
         </Slide>
         <Slide align="flex-start" bgColor="primary" fill>
